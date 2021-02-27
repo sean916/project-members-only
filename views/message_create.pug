@@ -1,0 +1,28 @@
+extends layout
+
+block content 
+
+    h1 #{title}
+    hr 
+    if currentUser
+        h5 You are logged in as 
+            a(href=currentUser.url) #{currentUser.username} 
+            |    - Would you like to 
+            a(href='/catalog/user/logout') log out?
+        hr 
+
+        form(method='POST' action='')
+            div.form-group 
+                label(for='title') Title: 
+                input#title.form-control(name='title' type='text' value=(undefined===message ? '' : message.title))
+            div.form-group 
+                label(for='body') Body: 
+                input#body.form-control(name='body' type='text' value=(undefined===message ? '' : message.body))
+            div.form-group 
+                input#user.form-control(name='user' type='hidden' value=(currentUser._id))
+            button(type='submit') Submit as #{currentUser.username}
+
+    else 
+        h2 Please 
+            a(href='/catalog/user/login') log in 
+            |   to create a message.

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+    h1 #{title}
+    hr 
+    if currentUser
+        h5 You are logged in as 
+            a(href=currentUser.url) #{currentUser.username} 
+            |    - Would you like to 
+            a(href='/catalog/user/logout') log out?
+        hr 
+
+    h3 Current number of 
+        a(href='/catalog/users') Users
+        |  : #{data.user_count}
+    hr 
+
+    h3 Current number of 
+        a(href='/catalog/messages') Messages
+        |  : #{data.message_count} 
+    hr 

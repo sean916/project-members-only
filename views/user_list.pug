@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+    h1 #{title}
+    hr 
+    if currentUser
+        h5 You are logged in as 
+            a(href=currentUser.url) #{currentUser.username} 
+            |    - Would you like to 
+            a(href='/catalog/user/logout') log out?
+        hr 
+    
+    for user in user_list 
+        h5
+            a(href=user.url) #{user.username} 
+        if currentUser && currentUser.member_status 
+            p Member status: #{user.member_status} 
+        else
+            p Please 
+                a(href='/catalog/user/login') Log In 
+                | to view more information. 
+        hr 

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+    h1 #{title}
+    hr 
+    if currentUser
+        h5 You are logged in as 
+            a(href=currentUser.url) #{currentUser.username} 
+            |    - Would you like to 
+            a(href='/catalog/user/logout') log out?
+        hr 
+    h3 #{message.title}
+    p #{message.body}
+    if currentUser && currentUser.member_status
+        p Written by 
+                a(href=message.user.url) #{message.user.username}
+    else
+        p You must be a 
+            a(href='/catalog/users/member') true member 
+            |   to see who wrote this message.
+    p Posted on #{message.timestamp_view_format}
+    if currentUser && currentUser.admin_status 
+        a(href=message.url + '/delete') Delete 

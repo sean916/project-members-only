@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+
+    h1 #{title}
+    hr 
+    if currentUser
+        h5 You are logged in as 
+            a(href=currentUser.url) #{currentUser.username} 
+            |    - Would you like to 
+            a(href='/catalog/user/logout') log out?
+        hr 
+
+    if currentUser.admin_status 
+        h5 Are you sure you want to permanently delete this message?
+        form(method='POST' action='')
+            input(type='hidden' name='messageid' value=(message._id))
+            button.btn.btn-primary(type='submit') Delete 
+
+    else 
+        h5 You must be an 
+        a(href='/catalog/users/member') admin 
+        |    to delete messages.

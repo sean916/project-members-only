@@ -1,0 +1,34 @@
+extends layout 
+
+block content 
+
+    h1 #{title} 
+    hr 
+    
+    if currentUser
+
+        if currentUser.member_status == false 
+            h5 You are logged in as 
+                a(href=currentUser.url) #{currentUser.username} 
+                |    - Would you like to 
+                a(href='/catalog/user/logout') log out?
+            hr 
+
+            form(method='POST' action='')
+                div.form-group 
+                    label(for='code') Enter your member code below: 
+                    input#code.form-control(name='code' type='text')
+                button.btn.btn-primary(type='submit') Submit 
+
+        if currentUser.member_status == true 
+            h4 #{currentUser.username} is a true member.
+            form(method='POST' action='')
+                div.form-group 
+                    label(for='code') Enter your Admin code below: 
+                    input#code.form-control(name='code' type='text')
+                button.btn.btn-primary(type='submit') Submit 
+
+    else 
+        h4 Please 
+            a(href='/catalog/user/login') Log In 
+            | to enter your true member code. 

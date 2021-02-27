@@ -1,0 +1,22 @@
+extends layout 
+
+block content 
+
+    h1 #{title}
+    hr 
+    h2 Posts 
+    hr
+
+    if currentUser && currentUser.member_status 
+        for message in userMessages 
+            h5 
+                a(href=message.url) #{message.title} 
+            p #{message.body} 
+            p Posted on #{message.timestamp_view_format}
+            hr 
+    
+    else 
+        p You must be a 
+            a(href='/catalog/users/member') true member 
+            | to view this content.
+
