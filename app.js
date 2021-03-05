@@ -5,6 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const { body, validationResult } = require('express-validator');
+var compression = require('compresison');
 
 var session = require('express-session');
 var passport = require('passport');
@@ -28,6 +29,7 @@ var catalogRouter = require('./routes/catalog');
 
 var app = express();
 
+app.use(compression()); 
 
 passport.use(
   new LocalStrategy((username, password, done) => {
