@@ -5,7 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const { body, validationResult } = require('express-validator');
-var compression = require('compresison');
+var compression = require('compression');
 
 var session = require('express-session');
 var passport = require('passport');
