@@ -1,4 +1,6 @@
-require('dotenv').config({ silent: process.env.NODE_ENV === 'production' });
+if (process.env.NODE_ENV === 'production') {
+  return
+} else { require('dotenv').config() };
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
