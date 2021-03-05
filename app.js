@@ -18,7 +18,9 @@ var Schema = mongoose.Schema;
 var User = require('./models/user');
 var Message = require('./models/message');
 
-const mongoDb = `mongodb+srv://` + process.env.DB_USER + `:` + process.env.DB_PASS + `@cluster0.jgsd3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`; 
+var dev_db_url = `mongodb+srv://` + process.env.DB_USER + `:` + process.env.DB_PASS + `@cluster0.jgsd3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`; 
+var mongoDb = process.env.MONGODB_URI || dev_db_url;
+ 
 
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
