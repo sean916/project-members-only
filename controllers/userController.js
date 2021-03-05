@@ -44,13 +44,13 @@ exports.member_post = [
             // there are errors. Render form again 
             res.render('true_member', { title: 'True Member', errors: errors.array() });
         }
-        else if (req.body.code == process.env.MEMBER_CODE) {
+        else if (req.body.code == 'code') {
             User.findByIdAndUpdate(req.user._id, { member_status: true }, function(err, thismember) {
                 if (err) { return next(err); }
                 res.redirect(thismember.url);
             });
         }
-        else if (req.body.code == process.env.ADMIN_CODE) {
+        else if (req.body.code == 'admin') {
             User.findByIdAndUpdate(req.user._id, {admin_status: true }, function(err, thismember) {
                 if (err) { return next(err); }
                 res.redirect(thismember.url);

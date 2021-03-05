@@ -1,6 +1,7 @@
-if (process.env.NODE_ENV === 'production') {
-  return
-} else { require('dotenv').config() };
+// if (process.env.NODE_ENV === 'production') {
+//   return
+// } else { require('dotenv').config() };
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -21,7 +22,7 @@ var User = require('./models/user');
 var Message = require('./models/message');
 
 var dev_db_url = `mongodb+srv://` + process.env.DB_USER + `:` + process.env.DB_PASS + `@cluster0.jgsd3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`; 
-var mongoDb = process.env.MONGODB_URI || dev_db_url;
+var mongoDb = process.env.MONGODB_URI;
 
 
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
