@@ -19,8 +19,7 @@ var User = require('./models/user');
 var Message = require('./models/message');
 
 var dev_db_url = `mongodb+srv://` + process.env.DB_USER + `:` + process.env.DB_PASS + `@cluster0.jgsd3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`; 
-var mongoDb = `mongodb+srv://dbUser:dbPassword@cluster0.o37j1.mongodb.net/members-only?retryWrites=true&w=majority`;
-// 'mongodb+srv://dbUser:dbPassword@cluster0.o37j1.mongodb.net/members-only?retryWrites=true&w=majority'
+var mongoDb = process.env.MONGODB_URI;
 
 
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
